@@ -1,3 +1,5 @@
 node_modules
 .env
 yarn.lock
+scholarships.json
+/data/scholarships.js

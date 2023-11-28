@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import scholarshipsRoute from "./routes/scholarships.js";
+import checkEligibilityRoute from "./routes/checkEligibility.js";
 
 if (process.env.NODE_ENV !== "production") {
   dotenv.config();
@@ -16,7 +18,8 @@ const app = express();
 const PORT = process.env.PORT || 6000;
 
 app.use(cors());
-
-app.get("/", (req, res) => res.send("Hello from Backend!!!"));
+app.use(express.json());
+app.use("/", scholarshipsRoute);
+app.use("/", checkEligibilityRoute);
 
 app.listen(PORT, () => console.log(`App is listening on PORT ${PORT}`));
