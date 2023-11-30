@@ -14,7 +14,7 @@ import { useState } from "react";
 import * as yup from "yup";
 import axios from "axios";
 
-export default function Form({ setScholarships }) {
+export default function Form({ setScholarships, phone }) {
   const [disabled, setDisabled] = useState(false);
   const validations = yup.object({
     studentof: yup.string().required("Please select the student type!"),
@@ -64,8 +64,8 @@ export default function Form({ setScholarships }) {
   return (
     <>
       <Stack
-        spacing={5}
-        sx={{ width: "80%" }}
+        spacing={phone ? 3 : 5}
+        sx={{ width: phone ? "100%" : "80%" }}
         component="form"
         onSubmit={formik.handleSubmit}
       >
@@ -173,7 +173,7 @@ export default function Form({ setScholarships }) {
           </Typography>
         </FormControl>
         <Button variant="contained" type="submit" disabled={disabled}>
-          Search
+          {disabled ? "Searching..." : "Serach"}
         </Button>
       </Stack>
     </>

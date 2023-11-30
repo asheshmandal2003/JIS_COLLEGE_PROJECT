@@ -1,6 +1,6 @@
 import { Alert, Card, Divider, Link, Typography } from "@mui/material";
 
-export default function Scholarships({ scholarships }) {
+export default function Scholarships({ scholarships, phone }) {
   return (
     <>
       {scholarships.length !== 0 ? (
@@ -9,7 +9,10 @@ export default function Scholarships({ scholarships }) {
             Scholarships
           </Typography>
           {scholarships.map((scholarship) => (
-            <Card key={scholarship._id} sx={{ width: 480, p: 4, mb: 3 }}>
+            <Card
+              key={scholarship._id}
+              sx={{ width: phone ? 300 : 480, p: 4, mb: 3 }}
+            >
               <Typography variant="h6" mb={1}>
                 {scholarship.name}
               </Typography>
@@ -20,7 +23,7 @@ export default function Scholarships({ scholarships }) {
                   : `Applicable for only ${scholarship.residence} students`}
               </Typography>
               <Divider sx={{ mb: 3 }} />
-              <Typography variant="subtitle2" mb={3}>
+              <Typography noWrap={false} variant="subtitle2" mb={3}>
                 {scholarship.description}
               </Typography>
               <Link underline="hover" sx={{ cursor: "pointer" }}>
@@ -31,7 +34,7 @@ export default function Scholarships({ scholarships }) {
         </>
       ) : (
         <>
-          <Alert severity="warning" sx={{ width: 480 }}>
+          <Alert severity="warning" sx={{ width: phone ? 320 : 480 }}>
             No sholarship is available!
           </Alert>
         </>
